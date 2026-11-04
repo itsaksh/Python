@@ -11,7 +11,7 @@ def find_common_courses(students, target, minimum=2):
         common = target_courses.intersection(set(courses))
         if len(common) >= minimum:
             result[student] = sorted(common)
-        return result
+    return result
 students = {
     "Arun": ["Java", "Python", "SQL", "Python"],
     "Bala": ["Python", "SQL"],
