@@ -1,24 +1,21 @@
-def find_common_courses(students, target, minimum=2):
-
-    if target not in students:
-        print(f"Error: '{target}' is not registered.")
-        return {}
-    target_courses = set(students[target])
-    result = {}
-    for student, courses in students.items():
-        if student == target:
-            continue
-        common = target_courses.intersection(set(courses))
-        if len(common) >= minimum:
-            result[student] = sorted(common)
-    return result
-students = {
-    "Arun": ["Java", "Python", "SQL", "Python"],
-    "Bala": ["Python", "SQL"],
+registrations = {
+    "Arun": ["Python", "Java", "SQL", "Python"],
+    "Bala": ["Python", "C", "SQL"],
     "Charan": ["Java", "Python", "SQL"],
-    "Divya": ["Java", "Python"],
-    "Ezhil": ["Java", "Java", "C"],
-    "Farah": ["Java", "Java", "C"]
+    "Divya": ["Python", "Java"],
+    "Ezhil": ["C", "Java", "Java"]
 }
-answer = find_common_courses(students, "Arun")
-print(answer)
+
+target = "Arun"
+target_courses = set(registrations[target])
+common_students = {}
+
+for student, courses in registrations.items():
+    if student == target:
+        continue
+
+    common = target_courses & set(courses)
+    if len(common) >= 2:
+        common_students[student] = sorted(common)
+
+print("Common courses:", common_students)
